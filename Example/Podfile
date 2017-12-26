@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'BPTrackerPod_Example' do
+  pod 'BPTrackerPod', :path => '../'
+
+  target 'BPTrackerPod_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
