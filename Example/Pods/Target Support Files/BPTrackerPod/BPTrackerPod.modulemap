@@ -1,0 +1,6 @@
+framework module BPTrackerPod {
+  umbrella header "BPTrackerPod-umbrella.h"
+
+  export *
+  module * { export * }
+}
