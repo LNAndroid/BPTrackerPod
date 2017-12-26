@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BPTrackerPod'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of BPTrackerPod.'
+  s.version          = '1.0.2'
+  s.summary          = 'This Pod will allow users to connect with MedCheck BLE Devices and read data from BLE.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,9 +17,7 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  s.description      = 'This Pod will allow users to connect with MedCheck BLE Devices and read data from BLE. This SDK will return data.'
 
   s.homepage         = 'https://github.com/LNAndroid/BPTrackerPod'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
