@@ -1,8 +1,8 @@
 {
   "name": "BPTrackerPod",
-  "version": "0.1.0",
-  "summary": "A short description of BPTrackerPod.",
-  "description": "TODO: Add long description of the pod here.",
+  "version": "1.0.4",
+  "summary": "This Pod will allow users to connect with MedCheck BLE Devices and read data from BLE.",
+  "description": "This Pod will allow users to connect with MedCheck BLE Devices and read data from BLE. This SDK will return data.",
   "homepage": "https://github.com/LNAndroid/BPTrackerPod",
   "license": {
     "type": "MIT",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/LNAndroid/BPTrackerPod.git",
-    "tag": "0.1.0"
+    "tag": "1.0.4"
   },
   "platforms": {
     "ios": "8.0"

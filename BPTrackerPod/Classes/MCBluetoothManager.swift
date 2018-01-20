@@ -9,7 +9,7 @@
 import UIKit
 import CoreBluetooth
 
-class MCBluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
+@objc public class MCBluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     var _manager : CBCentralManager?
     var delegate : MCBluetoothDelegate?
     private(set) var connected = false

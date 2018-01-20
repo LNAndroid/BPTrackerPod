@@ -64,7 +64,7 @@ struct BGMCMD9Data {
     }
 }
 
-class BPMDataManager: NSObject, MCBluetoothDelegate {
+@objc public class BPMDataManager: NSObject, MCBluetoothDelegate {
     let bluetoothManager = MCBluetoothManager.getInstance()
     var delegate : BPMDataManagerDelegate?
     
@@ -110,7 +110,7 @@ class BPMDataManager: NSObject, MCBluetoothDelegate {
      
      - parameter state: The bluetooth state
      */
-    func didUpdateState(_ state: CBCentralManagerState) {
+    @objc public func didUpdateState(_ state: CBCentralManagerState) {
         print("MainController --> didUpdateState:\(state)")
         switch state {
         case .resetting:
@@ -147,7 +147,7 @@ class BPMDataManager: NSObject, MCBluetoothDelegate {
      
      - parameter connectedPeripheral: The peripheral which connected successfully.
      */
-    func didConnectedPeripheral(_ connectedPeripheral: CBPeripheral) {
+    public func didConnectedPeripheral(_ connectedPeripheral: CBPeripheral) {
         print("MainController --> didConnectedPeripheral")
     }
     
@@ -158,7 +158,7 @@ class BPMDataManager: NSObject, MCBluetoothDelegate {
         return hexaValue
     }
     
-    func didDiscoverPeripheral(_ peripheral: CBPeripheral, advertisementData: [String : Any], RSSI: NSNumber) {
+    public func didDiscoverPeripheral(_ peripheral: CBPeripheral, advertisementData: [String : Any], RSSI: NSNumber) {
         if (peripheral.name == "HL158HC BLE" || peripheral.name == "HL568HC BLE" || peripheral.name == "SFBPBLE" || peripheral.name == "SFBGBLE"){
             if let advData = advertisementData["kCBAdvDataManufacturerData"] as? NSData {
                 let address = getBLEMACAddress(data: advData)
@@ -209,7 +209,7 @@ class BPMDataManager: NSObject, MCBluetoothDelegate {
      
      - didDisconnectPeripheral: Called when peripherial is disconnected
      */
-    func didDisconnectPeripheral(_ peripheral: CBPeripheral) {
+    public func didDisconnectPeripheral(_ peripheral: CBPeripheral) {
         print("disconnected\(peripheral)")
         recordCounter = 0
         commandStr = "BT:9"
@@ -222,7 +222,7 @@ class BPMDataManager: NSObject, MCBluetoothDelegate {
      
      - parameter services: The service instances which discovered by CoreBluetooth
      */
-    func didDiscoverServices(_ peripheral: CBPeripheral) {
+    public func didDiscoverServices(_ peripheral: CBPeripheral) {
         services = peripheral.services
         for service in peripheral.services as [CBService]!{
             peripheral.discoverCharacteristics(nil, for: service)
@@ -234,7 +234,7 @@ class BPMDataManager: NSObject, MCBluetoothDelegate {
      
      - parameter peripheral: The peripheral which interrogation failed.
      */
-    func didFailedToInterrogate(_ peripheral: CBPeripheral) {
+    public func didFailedToInterrogate(_ peripheral: CBPeripheral) {
         //        showAlert("The perapheral disconnected while being interrogated.")
         
     }
@@ -244,7 +244,7 @@ class BPMDataManager: NSObject, MCBluetoothDelegate {
      
      - didDiscoverCharacteritics: when any services is discovered in connected peripheral
      */
-    func didDiscoverCharacteritics(_ service: CBService) {
+    public func didDiscoverCharacteritics(_ service: CBService) {
         for characteristic in service.characteristics!{
             
             if characteristic.uuid.uuidString == "FFF4"{ //Read Data
@@ -281,7 +281,7 @@ class BPMDataManager: NSObject, MCBluetoothDelegate {
      
      - didDiscoverDescriptors: Called when any descriptor discovered from characteristics
      */
-    func didDiscoverDescriptors(_ characteristic: CBCharacteristic) {
+    public func didDiscoverDescriptors(_ characteristic: CBCharacteristic) {
         
         self.fff5Characteristic = characteristic
     }
@@ -291,7 +291,7 @@ class BPMDataManager: NSObject, MCBluetoothDelegate {
      
      - didReadValueForCharacteristic: any value is updated in characteristics
      */
-    func didReadValueForCharacteristic(_ characteristic: CBCharacteristic) {
+    public func didReadValueForCharacteristic(_ characteristic: CBCharacteristic) {
         let string = String(data: characteristic.value!, encoding: String.Encoding.utf8)
 //        print("didReadValueForCharacteristic \(string)")
         if MCBluetoothManager.getInstance().connectedPeripheral?.name == "HL158HC BLE" || MCBluetoothManager.getInstance().connectedPeripheral?.name == "SFBPBLE" {

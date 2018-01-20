@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		105A555976314472CF6C6746652E242E /* BPTrackerPod-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 16ADBE6B2174D0615DB95F3CFC2B8469 /* BPTrackerPod-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0991D9C251CACA9E93DA9505C6F99C58 /* MCBluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF3F0A69059C567028CDEDA0292C8AD /* MCBluetoothManager.swift */; };
+		24BE8DFAD26570138FC3078505788D97 /* BPMDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396B41C28BA98A21B0E7FA81756BE6D7 /* BPMDataManager.swift */; };
+		2D11C745CCD09F2F4CDFACA7E0CD6FC5 /* BPTrackerPod-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FCECA9218B4370EE4FF7639E7BE33D01 /* BPTrackerPod-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3DE8B39A3225E9AC31B4A2D5018A2A5F /* Pods-BPTrackerPod_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E5ABE2C26454864AE049C5AA16D52FE0 /* Pods-BPTrackerPod_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41BF808074BBC293B76E765FCC7381C8 /* Pods-BPTrackerPod_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E7653BC4025C6708922215E99910E4 /* Pods-BPTrackerPod_Tests-dummy.m */; };
 		61C65C045681C9F971375CC8EA534F14 /* Pods-BPTrackerPod_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8868BFDF4101319149152269A1C84B /* Pods-BPTrackerPod_Example-dummy.m */; };
+		6B148AEF0AE1C297ECB1EEF55D428D75 /* MCBluetoothConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D9EB252013BFA581B42E16971DE77 /* MCBluetoothConstant.swift */; };
+		6FED6D4F4775DF9877A7CAE26788687A /* BPTrackerPod-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D28EE9B1F05E2AA9B40592D30B78F477 /* BPTrackerPod-dummy.m */; };
+		7BA519118EF40F245D88FAAD03331B36 /* MCBluetoothDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7836599B5BB97068B57A27EAAE7888B8 /* MCBluetoothDelegate.swift */; };
+		8E191981A8FD7C7FDE2A9B2D9649130A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		8EC92A097D2E8D338A335454A12EDA89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		A06E375DCEF887680635697565D447D3 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B596663C9933475BC332AB3AB0588E /* ReplaceMe.swift */; };
 		AEEF96050225BC0AC66B2A9C594DCF53 /* Pods-BPTrackerPod_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DD1AA0FBE80714302E03F9F05551B566 /* Pods-BPTrackerPod_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DB3F5E5A26484FC1AEAE1CCD73B585FA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		E84DAC803D27FB955787902ED6C4C04C /* BPTrackerPod-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 21470FC49C31CE0FFBF4FBB279D3D10F /* BPTrackerPod-dummy.m */; };
-		F5B09F6FD594137BCC122CD185823108 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4B9BC327376FA526B53628019DC838 /* ReplaceMe.swift */; };
+		D54A91F0ACB1510B5A30F4A619E8F166 /* BLE+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB50AFD7A5CBE68E75BE4C9A0F68A0A1 /* BLE+Extension.swift */; };
 		FA4E131581F70EE9C5DB89F167A18613 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,43 +29,48 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CB0285105D421DAB59FF4847E29E1CDE;
+			remoteGlobalIDString = 5CDD57D570C5A5B1E9C24C2097C99516;
 			remoteInfo = BPTrackerPod;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0F81E3FCB8C5F523242FE0EC0C7E7079 /* Pods-BPTrackerPod_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-BPTrackerPod_Tests.modulemap"; sourceTree = "<group>"; };
-		121B86C2B772241822E921F2A325EC6C /* BPTrackerPod-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BPTrackerPod-prefix.pch"; sourceTree = "<group>"; };
-		16ADBE6B2174D0615DB95F3CFC2B8469 /* BPTrackerPod-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BPTrackerPod-umbrella.h"; sourceTree = "<group>"; };
+		1583EE68555F8A9DB7A4BCD1288C8DCA /* BPTrackerPod.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = BPTrackerPod.modulemap; sourceTree = "<group>"; };
 		1B4692D55D78AABAF4D8FD324438B183 /* Pods-BPTrackerPod_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BPTrackerPod_Example-frameworks.sh"; sourceTree = "<group>"; };
-		21470FC49C31CE0FFBF4FBB279D3D10F /* BPTrackerPod-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BPTrackerPod-dummy.m"; sourceTree = "<group>"; };
+		22C64B8271532DA2C436706D7803CE24 /* BPTrackerPod-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BPTrackerPod-prefix.pch"; sourceTree = "<group>"; };
 		25D3926EADE641E6B26EEC73A016C7A6 /* Pods-BPTrackerPod_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BPTrackerPod_Tests-resources.sh"; sourceTree = "<group>"; };
 		263525774AD566F340BCF6CEF17EA6E2 /* Pods-BPTrackerPod_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BPTrackerPod_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		35B596663C9933475BC332AB3AB0588E /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = BPTrackerPod/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		394A07D182DA71503DBB5A150F395653 /* Pods-BPTrackerPod_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BPTrackerPod_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		396B41C28BA98A21B0E7FA81756BE6D7 /* BPMDataManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BPMDataManager.swift; path = BPTrackerPod/Classes/BPMDataManager.swift; sourceTree = "<group>"; };
 		40959AB067B17A43F04CA107ECB93817 /* Pods-BPTrackerPod_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BPTrackerPod_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		5E6BA95A5A940E68CEB7959614946902 /* Pods-BPTrackerPod_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BPTrackerPod_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		69E202B4E0B0E0E166378F06CBCFCF4C /* BPTrackerPod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BPTrackerPod.xcconfig; sourceTree = "<group>"; };
+		708BDCC9110D5504E8FDA0516FC7EE86 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7836599B5BB97068B57A27EAAE7888B8 /* MCBluetoothDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MCBluetoothDelegate.swift; path = BPTrackerPod/Classes/MCBluetoothDelegate.swift; sourceTree = "<group>"; };
+		7EF3F0A69059C567028CDEDA0292C8AD /* MCBluetoothManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MCBluetoothManager.swift; path = BPTrackerPod/Classes/MCBluetoothManager.swift; sourceTree = "<group>"; };
 		7F12BAE9316C4E7A7F5BB76FDE1A007F /* Pods-BPTrackerPod_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BPTrackerPod_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		85DBAD7C302DE4D381D7337BF5E94E9D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		809D9EB252013BFA581B42E16971DE77 /* MCBluetoothConstant.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MCBluetoothConstant.swift; path = BPTrackerPod/Classes/MCBluetoothConstant.swift; sourceTree = "<group>"; };
 		91E7653BC4025C6708922215E99910E4 /* Pods-BPTrackerPod_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BPTrackerPod_Tests-dummy.m"; sourceTree = "<group>"; };
 		92EF0FE431CAED5254F6A992AA49A036 /* Pods-BPTrackerPod_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BPTrackerPod_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		98E881CD3058330C4B694A7065D8A320 /* Pods-BPTrackerPod_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BPTrackerPod_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		9C3F259E2F489905E21119D7C25C0E85 /* Pods_BPTrackerPod_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BPTrackerPod_Example.framework; path = "Pods-BPTrackerPod_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA4B9BC327376FA526B53628019DC838 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = BPTrackerPod/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		AB969E5571754C69641C0B94DFBC5217 /* Pods-BPTrackerPod_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BPTrackerPod_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B137CC355B7B1DEFD2668F55C76F2938 /* Pods-BPTrackerPod_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BPTrackerPod_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		C22334261F5F37738A4A9FF699CD401E /* Pods-BPTrackerPod_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BPTrackerPod_Example-resources.sh"; sourceTree = "<group>"; };
+		C440045F3626D02D736A6CDCD7101CD1 /* BPTrackerPod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BPTrackerPod.xcconfig; sourceTree = "<group>"; };
 		CACCDD56ABF91955C7D78429208C4803 /* Pods_BPTrackerPod_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BPTrackerPod_Tests.framework; path = "Pods-BPTrackerPod_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB50AFD7A5CBE68E75BE4C9A0F68A0A1 /* BLE+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "BLE+Extension.swift"; path = "BPTrackerPod/Classes/BLE+Extension.swift"; sourceTree = "<group>"; };
+		D28EE9B1F05E2AA9B40592D30B78F477 /* BPTrackerPod-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BPTrackerPod-dummy.m"; sourceTree = "<group>"; };
 		DD1AA0FBE80714302E03F9F05551B566 /* Pods-BPTrackerPod_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BPTrackerPod_Example-umbrella.h"; sourceTree = "<group>"; };
 		DD49D11F5E8A46A048EFB894F61F8EFC /* Pods-BPTrackerPod_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-BPTrackerPod_Example.modulemap"; sourceTree = "<group>"; };
 		E5ABE2C26454864AE049C5AA16D52FE0 /* Pods-BPTrackerPod_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BPTrackerPod_Tests-umbrella.h"; sourceTree = "<group>"; };
 		E6BA656BE6EA58D6E4E6CAC346D88026 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4F9B524583208EE276D8006B91CF9C2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7C25B4A2E9BF8DFC0704F23BC47E586 /* BPTrackerPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BPTrackerPod.framework; path = BPTrackerPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F944CC9D331E8628222A094BD7C57FBE /* BPTrackerPod.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = BPTrackerPod.modulemap; sourceTree = "<group>"; };
+		FCECA9218B4370EE4FF7639E7BE33D01 /* BPTrackerPod-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BPTrackerPod-umbrella.h"; sourceTree = "<group>"; };
 		FF8868BFDF4101319149152269A1C84B /* Pods-BPTrackerPod_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BPTrackerPod_Example-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,11 +91,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F0182012513711455F7E742375790A19 /* Frameworks */ = {
+		92A28BBDA82355D5A62F8D497964D810 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB3F5E5A26484FC1AEAE1CCD73B585FA /* Foundation.framework in Frameworks */,
+				8E191981A8FD7C7FDE2A9B2D9649130A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +109,21 @@
 				5724E360FCC3D8BA98750CAC1F19890C /* Pods-BPTrackerPod_Tests */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		07DDC0ED2690EE8374B4E51A561541FF /* BPTrackerPod */ = {
+			isa = PBXGroup;
+			children = (
+				CB50AFD7A5CBE68E75BE4C9A0F68A0A1 /* BLE+Extension.swift */,
+				396B41C28BA98A21B0E7FA81756BE6D7 /* BPMDataManager.swift */,
+				809D9EB252013BFA581B42E16971DE77 /* MCBluetoothConstant.swift */,
+				7836599B5BB97068B57A27EAAE7888B8 /* MCBluetoothDelegate.swift */,
+				7EF3F0A69059C567028CDEDA0292C8AD /* MCBluetoothManager.swift */,
+				35B596663C9933475BC332AB3AB0588E /* ReplaceMe.swift */,
+				F8EFC3031346F05AF37E712B993658F9 /* Support Files */,
+			);
+			name = BPTrackerPod;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		5724E360FCC3D8BA98750CAC1F19890C /* Pods-BPTrackerPod_Tests */ = {
@@ -119,18 +144,12 @@
 			path = "Target Support Files/Pods-BPTrackerPod_Tests";
 			sourceTree = "<group>";
 		};
-		60DD71A9F494787DEADC61DA6B111C32 /* Support Files */ = {
+		6105518D50B58714286613536646BE14 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F944CC9D331E8628222A094BD7C57FBE /* BPTrackerPod.modulemap */,
-				69E202B4E0B0E0E166378F06CBCFCF4C /* BPTrackerPod.xcconfig */,
-				21470FC49C31CE0FFBF4FBB279D3D10F /* BPTrackerPod-dummy.m */,
-				121B86C2B772241822E921F2A325EC6C /* BPTrackerPod-prefix.pch */,
-				16ADBE6B2174D0615DB95F3CFC2B8469 /* BPTrackerPod-umbrella.h */,
-				85DBAD7C302DE4D381D7337BF5E94E9D /* Info.plist */,
+				07DDC0ED2690EE8374B4E51A561541FF /* BPTrackerPod */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/BPTrackerPod";
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		6642CA0FAEDB0D2CB3B457794726EE01 /* Products */ = {
@@ -147,7 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				D72671EE41828A7C957174DCCA3DC665 /* Development Pods */,
+				6105518D50B58714286613536646BE14 /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				6642CA0FAEDB0D2CB3B457794726EE01 /* Products */,
 				03A26C4C901E406F348989F85718EE8A /* Targets Support Files */,
@@ -188,40 +207,36 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		D72671EE41828A7C957174DCCA3DC665 /* Development Pods */ = {
+		F8EFC3031346F05AF37E712B993658F9 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				F59E1882B2147D216B40DB9AA6F3B5E8 /* BPTrackerPod */,
+				1583EE68555F8A9DB7A4BCD1288C8DCA /* BPTrackerPod.modulemap */,
+				C440045F3626D02D736A6CDCD7101CD1 /* BPTrackerPod.xcconfig */,
+				D28EE9B1F05E2AA9B40592D30B78F477 /* BPTrackerPod-dummy.m */,
+				22C64B8271532DA2C436706D7803CE24 /* BPTrackerPod-prefix.pch */,
+				FCECA9218B4370EE4FF7639E7BE33D01 /* BPTrackerPod-umbrella.h */,
+				708BDCC9110D5504E8FDA0516FC7EE86 /* Info.plist */,
 			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		F59E1882B2147D216B40DB9AA6F3B5E8 /* BPTrackerPod */ = {
-			isa = PBXGroup;
-			children = (
-				AA4B9BC327376FA526B53628019DC838 /* ReplaceMe.swift */,
-				60DD71A9F494787DEADC61DA6B111C32 /* Support Files */,
-			);
-			name = BPTrackerPod;
-			path = ../..;
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/BPTrackerPod";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		269583CEF23B67E3B678F0E386FC3EE1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D11C745CCD09F2F4CDFACA7E0CD6FC5 /* BPTrackerPod-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3218A9B3D9BC3173B10593DE251CB2C5 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3DE8B39A3225E9AC31B4A2D5018A2A5F /* Pods-BPTrackerPod_Tests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3EF6BA6A4698D0D51D3DCCB4A1E3FE44 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				105A555976314472CF6C6746652E242E /* BPTrackerPod-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,13 +251,13 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		CB0285105D421DAB59FF4847E29E1CDE /* BPTrackerPod */ = {
+		5CDD57D570C5A5B1E9C24C2097C99516 /* BPTrackerPod */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 04DA6AD294690C37A39A1912D9C172F0 /* Build configuration list for PBXNativeTarget "BPTrackerPod" */;
+			buildConfigurationList = DD661AB9135F272854B3D5F8066BE8EF /* Build configuration list for PBXNativeTarget "BPTrackerPod" */;
 			buildPhases = (
-				1EF8D6B00239B92C9822106F580C81AB /* Sources */,
-				F0182012513711455F7E742375790A19 /* Frameworks */,
-				3EF6BA6A4698D0D51D3DCCB4A1E3FE44 /* Headers */,
+				BE5CB4F56CD043458B4E1FA1C196570C /* Sources */,
+				92A28BBDA82355D5A62F8D497964D810 /* Frameworks */,
+				269583CEF23B67E3B678F0E386FC3EE1 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -309,7 +324,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CB0285105D421DAB59FF4847E29E1CDE /* BPTrackerPod */,
+				5CDD57D570C5A5B1E9C24C2097C99516 /* BPTrackerPod */,
 				F2E95B2B040E0725770F564F09D08E8B /* Pods-BPTrackerPod_Example */,
 				CDB1DFF29962C8C99B1FDE4193987D0C /* Pods-BPTrackerPod_Tests */,
 			);
@@ -325,20 +340,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1EF8D6B00239B92C9822106F580C81AB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E84DAC803D27FB955787902ED6C4C04C /* BPTrackerPod-dummy.m in Sources */,
-				F5B09F6FD594137BCC122CD185823108 /* ReplaceMe.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2B9096334C400AB307CD0A00A0CF51AE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				41BF808074BBC293B76E765FCC7381C8 /* Pods-BPTrackerPod_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE5CB4F56CD043458B4E1FA1C196570C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D54A91F0ACB1510B5A30F4A619E8F166 /* BLE+Extension.swift in Sources */,
+				24BE8DFAD26570138FC3078505788D97 /* BPMDataManager.swift in Sources */,
+				6FED6D4F4775DF9877A7CAE26788687A /* BPTrackerPod-dummy.m in Sources */,
+				6B148AEF0AE1C297ECB1EEF55D428D75 /* MCBluetoothConstant.swift in Sources */,
+				7BA519118EF40F245D88FAAD03331B36 /* MCBluetoothDelegate.swift in Sources */,
+				0991D9C251CACA9E93DA9505C6F99C58 /* MCBluetoothManager.swift in Sources */,
+				A06E375DCEF887680635697565D447D3 /* ReplaceMe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,75 +368,12 @@
 		6D1839F39B0D9F3E719BE258D068DC54 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BPTrackerPod;
-			target = CB0285105D421DAB59FF4847E29E1CDE /* BPTrackerPod */;
+			target = 5CDD57D570C5A5B1E9C24C2097C99516 /* BPTrackerPod */;
 			targetProxy = 4B44399F927996B1FCE49F26A1629379 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		08ABCDEF34F6FE5994B0E95D273F8A78 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69E202B4E0B0E0E166378F06CBCFCF4C /* BPTrackerPod.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/BPTrackerPod/BPTrackerPod-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BPTrackerPod/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BPTrackerPod/BPTrackerPod.modulemap";
-				PRODUCT_NAME = BPTrackerPod;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		0A72E31B76EDAAC62A53EB3FF330B5E8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69E202B4E0B0E0E166378F06CBCFCF4C /* BPTrackerPod.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/BPTrackerPod/BPTrackerPod-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BPTrackerPod/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BPTrackerPod/BPTrackerPod.modulemap";
-				PRODUCT_NAME = BPTrackerPod;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		107BA918EE977A275BE727E540C85556 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5E6BA95A5A940E68CEB7959614946902 /* Pods-BPTrackerPod_Example.release.xcconfig */;
@@ -599,6 +556,69 @@
 			};
 			name = Release;
 		};
+		7D51BE6EE6A510D30126E7C38192A530 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C440045F3626D02D736A6CDCD7101CD1 /* BPTrackerPod.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/BPTrackerPod/BPTrackerPod-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BPTrackerPod/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BPTrackerPod/BPTrackerPod.modulemap";
+				PRODUCT_NAME = BPTrackerPod;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		ADB5CDFE1B409EC07080AFE3128D4AAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C440045F3626D02D736A6CDCD7101CD1 /* BPTrackerPod.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/BPTrackerPod/BPTrackerPod-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BPTrackerPod/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BPTrackerPod/BPTrackerPod.modulemap";
+				PRODUCT_NAME = BPTrackerPod;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		C760563D6ABA999E88F742C4BC5C3527 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B137CC355B7B1DEFD2668F55C76F2938 /* Pods-BPTrackerPod_Example.debug.xcconfig */;
@@ -668,15 +688,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		04DA6AD294690C37A39A1912D9C172F0 /* Build configuration list for PBXNativeTarget "BPTrackerPod" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				08ABCDEF34F6FE5994B0E95D273F8A78 /* Debug */,
-				0A72E31B76EDAAC62A53EB3FF330B5E8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -700,6 +711,15 @@
 			buildConfigurations = (
 				D8EA00CC2BC3BC4FF015ABDE0075826C /* Debug */,
 				7AF86593DFF604844A424D81DF55FF53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD661AB9135F272854B3D5F8066BE8EF /* Build configuration list for PBXNativeTarget "BPTrackerPod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D51BE6EE6A510D30126E7C38192A530 /* Debug */,
+				ADB5CDFE1B409EC07080AFE3128D4AAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

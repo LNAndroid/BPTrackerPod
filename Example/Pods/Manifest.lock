@@ -1,5 +1,5 @@
 PODS:
-  - BPTrackerPod (0.1.0)
+  - BPTrackerPod (1.0.4)
 
 DEPENDENCIES:
   - BPTrackerPod (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BPTrackerPod: df2e9331f82b871693934d74558b62d076414584
+  BPTrackerPod: ca87aa33bea7a01b6367727f5ecddac3e52f9d28
 
 PODFILE CHECKSUM: a9fb129c6b7bbfd13b41ce5d5fcec96ee3c38119
 
