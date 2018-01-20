@@ -9,26 +9,79 @@
 import UIKit
 import CoreBluetooth
 
+/// This class will return data from BLE. This class has almost all type of callbacks methods which will we usefull to you.
+
 @objc public protocol BPMDataManagerDelegate : NSObjectProtocol {
-    // BLE Connection methods
     
     
-    // BLE Data callback methods
+    /**
+     This will return User data from BLE. i.e User1, User2 or User3. It has all kind of information about User.
+     
+     @return JSON data which containts userNumber, start & end index, full or empty indicator.
+     */
     @objc optional func connectedUserData (_ connectedUser: [String: Any])
+    
+    /**
+     This will callback when any MedCheck device will connect.
+     
+     @return Will return connectedPeripheral
+     */
     @objc optional func didMedCheckConnected (_ connectedPeripheral: CBPeripheral)
+    
+    /**
+     This will callback when any MedCheck device will detected while scanning.
+     
+     @return Will return peripheral, advertisementData & RSSI.
+     */
     @objc optional func medcheckBLEDetected (_ peripheral: CBPeripheral, advertisementData: [String : Any], RSSI: NSNumber)
     
+    
     //Blood Pressure BLE Callback methods
+    /**
+     This will callback when any MedCheck device start to take new reading when it is connected with mobile.
+     
+     @return Will return peripheral.
+     */
     @objc optional func willTakeNewReading (_ BLEName: CBPeripheral)
+    
+    /**
+     This will callback when MedCheck device time is synchronized with current time.
+     */
     @objc optional func didSyncTime ()
+    
+    /**
+     This will callback when any MedCheck device takes new reading when it is connected. This will only work for Blood Pressure machine.
+     
+     @return Will return single JSON object.
+     */
     @objc optional func didTakeNewReading (_ readingData: [String: Any])
+    
+    /**
+     This will callback when any MedCheck device is connected and fetched all records from MedCheck Device.
+     
+     @return Will return Array of JSON object.
+     */
     @objc optional func fetchAllDataFromMedCheck (_ readingData: [Any])
+    
+    /**
+     This will callback when any MedCheck device is connected and call clear command. This will only work for Blood Pressure machine.
+     */
     @objc optional func didClearedData ()
+    
+    /**
+     This will callback when any MedCheck device is connected and try to fetch any data from BLE.
+     */
     @objc optional func willStartDataReading ()
+    
+    /**
+     This will callback when any MedCheck device is connected and fetched all data from BLE.
+     */
     @objc optional func didEndDataReading ()
     
     
 }
+
+/// This struct will store Blood Pressure machine user data. It will contain UserNumber, User1 record index, User2 record index, User3 record index, User1 memory space, User2 memory space, User3 memory space. If memory space is 1 that means all record of that user are full. As machine can store 40 records for each user, we need to add 40 + User record index.
 
 struct BPMCMD9Data {
     var user: String = ""
@@ -50,6 +103,8 @@ struct BPMCMD9Data {
     }
 }
 
+/// This struct will store Glucode machine user data. It will contain UserNumber, startingIndex & endingIndex. bgmType will indicate either user has selected mmoL or mg/dL.
+
 struct BGMCMD9Data {
     var user: String = ""
     var startingIndex: String = ""
@@ -64,26 +119,53 @@ struct BGMCMD9Data {
     }
 }
 
+/// This class is core class of this entier Pod. Use this class to get Blood Pressure & Glucose reading on BLE. This class will also handle BluetoothManager instance. So no need to create seperate instance for same.
+
 public class BPMDataManager: NSObject, MCBluetoothDelegate {
+    /// This will have CoreBluetoothManager all methods.
     public let bluetoothManager = MCBluetoothManager.getInstance()
+    
+    /// This will assign BPMDataManagerDelegate.
     public var delegate : BPMDataManagerDelegate?
     
+    /// This will containts all scanned BLE devices in array in form of CBPeripheral.
     public var arrBLEList = [CBPeripheral]()
+    
+    /// This will containts all scanned BLE devices's MAC Address in array in form of String.
     public var macAddress = [String]()
+    
+    /// This will containts all scanned BLE devices's information i.e CBPeripheral in form of Dictionary.
     public var nearbyPeripheralInfos : [CBPeripheral:Dictionary<String, AnyObject>] = [CBPeripheral:Dictionary<String, AnyObject>]()
     
+    /// This will containts all services of connected peripherals.
     public var services : [CBService]?
+    
+    /// This will containts all characteristics of connected service of connected peripherals.
     public var fff5Characteristic : CBCharacteristic?
+    
+    /// This will containts instance of connected peripheral.
     public var connectedPeripheral: CBPeripheral?
     
+    /// This will count fetched records from BLE.
     var recordCounter = 0
+    
+    /// This will have command value which we need to pass to BLE.
     var commandStr = "BT:9"
+    
+    /// This will set initial year from fetched record.
     var initialYear = 0
+    
+    /// This will contain all records of BLE machine.
     var bpmDataArray :  [Any] = [Any]()
+    
+    /// This will be true once device is connected and start to take new reading.
     var newReadingStart = false
     
+    /// These are objects of BT:9 command response from BLE.
     var BPM9CMD: BPMCMD9Data?
     var BGM9CMD: BGMCMD9Data?
+    
+    /// This will contain Glucose machine byte string.
     var BGMBytesString = ""
     
     /// Save the single instance
@@ -101,8 +183,12 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
     //        return instance
     //    }
     
+    /// sharedInstance of BPMDataManager class.
     public static let sharedInstance = BPMDataManager()
     
+    /**
+     This will check whether Bluetooth is On/Off in device. If ON then call scan function from MCBluetoothManager class.
+     */
     open func didUpdateManager(){
         bluetoothManager.delegate = self
         self.perform(#selector(didUpdateState(_:)), with: nil, with: 1)
@@ -141,6 +227,9 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
     }
     
     // MARK: BluetoothDelegate
+    /**
+     This will check whether Bluetooth is On/Off in device. If ON then call scan function from MCBluetoothManager class.
+     */
     @objc func updateState() {
         didUpdateState(bluetoothManager.state!)
     }
@@ -154,6 +243,11 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
         print("MainController --> didConnectedPeripheral")
     }
     
+    /**
+     This will calculate MAC Address from scanned device.
+     @param Data from advertisementData["kCBAdvDataManufacturerData"]
+     @return MAC address string
+     */
     func getBLEMACAddress(data: NSData) -> String {
         var buffer = [UInt8](repeating: 0x00, count: data.length)
         data.getBytes(&buffer, length: buffer.count)
@@ -161,6 +255,10 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
         return hexaValue
     }
     
+    /**
+     This will returned all BLEs near by. We are just returning those BLEs which are MedCheck devices.
+     @return peripheral, advertisementData & RSSI
+     */
     public func didDiscoverPeripheral(_ peripheral: CBPeripheral, advertisementData: [String : Any], RSSI: NSNumber) {
         if (peripheral.name == "HL158HC BLE" || peripheral.name == "HL568HC BLE" || peripheral.name == "SFBPBLE" || peripheral.name == "SFBGBLE"){
             if let advData = advertisementData["kCBAdvDataManufacturerData"] as? NSData {
@@ -322,15 +420,9 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
     }
     
     //MARK: Blood Pressure Reading functions
-    func toByteArray<T>(_ value: T) -> [UInt8] {
-        var value = value
-        return withUnsafePointer(to: &value) {
-            $0.withMemoryRebound(to: UInt8.self, capacity: MemoryLayout<T>.size) {
-                Array(UnsafeBufferPointer(start: $0, count: MemoryLayout<T>.size))
-            }
-        }
-    }
-    
+    /**
+     This will synch Blood Pressure machine time whenever machine is connected with device. Once BLE's time is synchronized successfully its callback returned.
+     */
     public func timeSyncOfBPM() {
         let date = Date()
         let calendar = Calendar.current
@@ -357,11 +449,12 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
         buffer.append(UInt8(seconds))
         let data = Data(bytes: buffer);
         
-        
-        
         MCBluetoothManager.getInstance().connectedPeripheral?.writeValue(data, for: self.fff5Characteristic!, type: CBCharacteristicWriteType.withoutResponse)
     }
     
+    /**
+     This will clear all data of a selected user from Blood Pressure machine.
+     */
     public func clearBPMDataCommand(){
         if self.fff5Characteristic != nil {
             deleteRecordsOfBPM(characteristic: self.fff5Characteristic!)
@@ -386,6 +479,9 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
         }
     }
     
+    /**
+     This will returned current user record index with full or empty status.
+     */
     func getUserRecordIndex() -> (Int, Bool) {
         var currentIndex = 0
         var isMemoryFull = false
@@ -404,6 +500,9 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
         return (currentIndex, isMemoryFull)
     }
     
+    /**
+     This will calculate on BLE byte data and get all records from Blood Pressure device.
+     */
     func readBPMData(data: NSData) {
         if data.length < 8{
             //            SVProgressHUD.dismiss()
@@ -414,20 +513,16 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
         
         let hexaValue = (data as Data).hexDescription
         
-        if hexaValue == "fa5af1f2fa5af3f4" {
+        if hexaValue == "fa5af1f2fa5af3f4" { // Starting node of each command
             print("Starting data")
             bpmDataArray.removeAll()
             recordCounter = 0
             delegate?.willStartDataReading!()
-            //            dismissPopUp()
-            //            lastBPMResultCount = appDelegate.bpmDataArray.count
-            //            SVProgressHUD.show(withStatus: "Fetching...")
             return
         }
         
-        if hexaValue == "f5a5f5f6f5a5f7f8" {
-            //            SVProgressHUD.dismiss()
-            if commandStr == "BT:9" {
+        if hexaValue == "f5a5f5f6f5a5f7f8" { // ending node of each command
+            if commandStr == "BT:9" { //Will store BT:9 command data in struct.
                 if BPM9CMD != nil {
                     var userNumber = "1"
                     if BPM9CMD?.user == "0" {
@@ -467,14 +562,13 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
                     let obj = bpmDataArray[currentIndex-1]
                     
                     if connectedPeripheral != nil {
-                        if self.newReadingStart {
+                        if self.newReadingStart {//If user has taken new reading.
                             delegate?.didTakeNewReading!(obj as! [String : Any])
                             self.newReadingStart = false
                         }
                     }
                 }
             }
-            //            SVProgressHUD.dismiss()
             return
         }
         let binaryData = hexaValue.hexaToBinaryString.pad(with: "0", toLength: 64)
@@ -489,23 +583,19 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
             if BPM9CMD != nil {
                 lastUser = (BPM9CMD?.user)!
                 lastReadingCount = getUserRecordIndex().0
-                print("last saved user: \(lastUser) count: \(lastReadingCount)")
-                
             }
             
             let memory = String(buffer[6], radix: 16)
-            print("memory \(memory)")
             let BYTE06 = memory.decimalToHexaString.hexaToBinaryString.pad(with: "0", toLength: 8)
-            print("BYTE06 \(BYTE06)")
             let person1MemorySpace = BYTE06.substring(with: 7..<8).binaryToDecimal
             let person2MemorySpace = BYTE06.substring(with: 6..<7).binaryToDecimal
             let person3MemorySpace = BYTE06.substring(with: 5..<6).binaryToDecimal
             
+            //Store all data to struct
             let data = BPMCMD9Data.init(user: user, person1Index: "\(buffer[7])", person2Index: "\(buffer[4])", person3Index: "\(buffer[5])", person1MemorySpace: "\(person1MemorySpace)", person2MemorySpace: "\(person2MemorySpace)", person3MemorySpace: "\(person3MemorySpace)")
             
             BPM9CMD = data
-            if lastUser != BPM9CMD?.user{
-                //showAlert("Device user changed")
+            if lastUser != BPM9CMD?.user{ // If device user is changed
                 var currentIndex = 0
                 if BPM9CMD?.user == "0" {
                     currentIndex = Int((BPM9CMD?.person1Index)!)!
@@ -516,19 +606,9 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
                 else if BPM9CMD?.user == "20" {
                     currentIndex = Int((BPM9CMD?.person3Index)!)!
                 }
-                //                if newReadingStart {
-                //                    lastBPMResultCount = currentIndex != 0 ? currentIndex - 1 : 0
-                //                }
-                //                else{
-                //                    lastBPMResultCount = currentIndex
-                //                }
-            }
-            else{
-                //showAlert("Device user same")
             }
         }
         else{
-            print(binaryData)
             if binaryData.characters.count == 64 && recordCounter < getUserRecordIndex().0{
                 let BYTE00 = binaryData.substring(with: 0..<8)
                 let BYTE0_BIT1 = BYTE00.substring(with: 4..<8).binaryToDecimal // month
@@ -553,21 +633,13 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
                 let sysPrefix = (BYTE04.substring(with: 0..<4).binaryToDecimal*100)
                 let diaPrefix = (BYTE04.substring(with: 4..<8).binaryToDecimal*100)
                 
-                //                print("syPrefix:\(sysPrefix) diaPrefix:\(diaPrefix)")
-                
                 var sysData = BYTE05.binToHex().ns.integerValue
                 var diaData = BYTE06.binToHex().ns.integerValue
                 
                 sysData =  sysPrefix+sysData
                 diaData =  diaPrefix+diaData
-                
-                //                print("sysData==> \(sysData)   diaData==>\(diaData)")
                 if sysData > 0{
                     let dataStr = String(format:"%02d-%02d-%04d %@",BYTE01,BYTE0_BIT1,year,timeStr)
-                    //                    let date1 = dataStr.getLocalTimeZoneDate()
-                    
-                    //                    print(String(format:"%02d-%02d-%04d %@",BYTE01,BYTE0_BIT1,year,timeStr))
-                    
                     let data = ["device":"Blood Pressure", "data" : ["Systolic":  String(format: "%d",sysData), "Diastolic" : String(format: "%d",diaData), "Date" : dataStr, "Indicator" : BYTE2_BIT2, "Pulse" : "\(buffer[7])"]]  as [String : Any]
                     
                     self.bpmDataArray.append(data)
@@ -578,7 +650,11 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
         }
     }
     
+    
     //MARK: Glucose machine Reading functions
+    /**
+     This will calculate on BLE byte data and get all records from Glucose device.
+     */
     func readBGMData(data: NSData) {
         
         if data.length < 8{
@@ -586,24 +662,18 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
         }
         var buffer = [UInt8](repeating: 0x00, count: data.length)
         data.getBytes(&buffer, length: buffer.count)
-        print("array \(buffer)")
         
         let hexaValue = (data as Data).hexDescription
-        print("hexaValue: \(hexaValue)")
         
-        if hexaValue == "fa5af1f2fa5af3f4" {
+        if hexaValue == "fa5af1f2fa5af3f4" { //start node of all command
             print("Starting data")
-            
             bpmDataArray.removeAll()
             recordCounter = 0
             delegate?.willStartDataReading!()
-            
             BGMBytesString = ""
-            
             return
         }
-        
-        if hexaValue == "f5a5f5f6f5a5f7f8" {
+        if hexaValue == "f5a5f5f6f5a5f7f8" {//ending node of all command
             print("Ending data")
             delegate?.didEndDataReading!()
             if commandStr == "BT:9" {
@@ -617,10 +687,10 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
             }
             return
         }
-        if hexaValue == "ffffffffffffffff" {
+        if hexaValue == "ffffffffffffffff" { //Empty data
             return
         }
-        if commandStr == "BT:0" {
+        if commandStr == "BT:0" { //Glucose machine will have only one user.
             BGMBytesString.append(hexaValue)
         }
         else{
@@ -643,18 +713,13 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
         
     }
     
+    /**
+     This will calculate on BLE byte data string and get all records from Glucose device.
+     */
     func BGMBT0CommandRead() {
-        
-        print("BGMBytesString==> \(BGMBytesString)")
         BGMBytesString.insert(separator: "@#", every: 12)
-        print("BGMBytesString==> \(BGMBytesString)")
-        
         let byteArray = BGMBytesString.components(separatedBy: "@#")
-        print(byteArray)
-        
         for (index, binaryStr) in byteArray.enumerated(){
-            //        for binaryStr in byteArray {
-            print("binaryStr ==> \(binaryStr)")
             if index < Int((BGM9CMD?.endingIndex)!)! {
                 let BYTE00 = binaryStr.substring(with: 0..<2) .hexaToBinaryString.pad(with: "0", toLength: 8)
                 let BYTE0_BIT1 = BYTE00.substring(with: 1..<8).binaryToDecimal //year
@@ -673,17 +738,10 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
                 let BYTE03_BIT1 = BYTE03.substring(with: 0..<2) // AC/PC indicator
                 let BYTE03_BIT2 = BYTE03.substring(with: 2..<8).binaryToDecimal // minutes
                 let timeStr = String(format:"%02d:%02d %@", BYTE1_BIT2, BYTE03_BIT2, (Int(BYTE0_BIT2) == 1 ? "PM" : "AM"))
-                print("timeStr \(timeStr)")
-                print("Ac/PC indicator: \(BYTE03_BIT1)")
                 
                 let BYTE04 = binaryStr.substring(with: 8..<10) .hexaToDecimal
-                print("LOW BYTE04: \(BYTE04)")
                 
                 let BYTE05 = binaryStr.substring(with: 10..<12) .hexaToDecimal
-                print("HIGH BYTE05: \(BYTE05)")
-                
-                //                let dataStr = String(format:"%@ %@",dateStr,timeStr)
-                //                let date1 = dataStr.getLocalTimeZoneDate()
                 
                 let data = ["device":"Glucose", "data" : ["high_blood":  String(format: "%d",BYTE05), "Date" : dateStr+" "+timeStr, "Indicator" : BYTE03_BIT1]]  as [String : Any]
                 
@@ -696,13 +754,19 @@ public class BPMDataManager: NSObject, MCBluetoothDelegate {
         }
     }
     
+    /**
+     This will prind BGM9CMD data.
+     */
     func BGMBT9CommandRead(){
         print("BGM9CMD \(BGM9CMD)")
     }
+    
+    /**
+     This will some other data from Glucose machine.
+     */
     func readOtherData(data: NSData) {
         var buffer = [UInt8](repeating: 0x00, count: data.length)
         data.getBytes(&buffer, length: buffer.count)
-        print("readOtherData array \(buffer)")
         let str = buffer.reduce("", { $0 + String(format: "%c", $1)})
         print("readOtherData str ==> \(str)")
     }
