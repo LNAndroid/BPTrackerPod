@@ -12,7 +12,7 @@ import CoreBluetooth
 @objc public class MCBluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     var _manager : CBCentralManager?
     var delegate : MCBluetoothDelegate?
-    private(set) var connected = false
+    public var connected = false
     var state: CBCentralManagerState? {
         guard _manager != nil else {
             return nil
@@ -62,14 +62,14 @@ import CoreBluetooth
     /**
      The method provides for starting scan near by peripheral
      */
-    func startScanPeripheral() {
+    public func startScanPeripheral() {
         _manager?.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:true])
     }
     
     /**
      The method provides for stopping scan near by peripheral
      */
-    func stopScanPeripheral() {
+    public func stopScanPeripheral() {
         _manager?.stopScan()
     }
     
@@ -217,7 +217,7 @@ import CoreBluetooth
      - parameter peripheral:        The discovered peripheral.
      - parameter advertisementData: A dictionary containing any advertisement and scan response data.
      - parameter RSSI:              The current RSSI of peripheral, in dBm. A value of 127 is reserved and indicates the RSSI
-     *								was not available.
+     *                                was not available.
      */
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if (peripheral.name == "HL158HC BLE" || peripheral.name == "HL568HC BLE" || peripheral.name == "SFBPBLE" || peripheral.name == "SFBGBLE"){
@@ -351,7 +351,7 @@ import CoreBluetooth
      - parameter error:          The error message
      */
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-//        print("Bluetooth Manager --> didUpdateValueForCharacteristic")
+        //        print("Bluetooth Manager --> didUpdateValueForCharacteristic")
         if error != nil {
             print("Bluetooth Manager --> Failed to read value for the characteristic. Error:\(error!.localizedDescription)")
             delegate?.didFailToReadValueForCharacteristic?(error!)
@@ -361,3 +361,4 @@ import CoreBluetooth
         
     }
 }
+

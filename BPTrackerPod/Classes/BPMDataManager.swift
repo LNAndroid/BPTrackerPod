@@ -11,7 +11,7 @@ import CoreBluetooth
 
 @objc public protocol BPMDataManagerDelegate : NSObjectProtocol {
     // BLE Connection methods
-
+    
     
     // BLE Data callback methods
     @objc optional func connectedUserData (_ connectedUser: [String: Any])
@@ -64,17 +64,18 @@ struct BGMCMD9Data {
     }
 }
 
-@objc public class BPMDataManager: NSObject, MCBluetoothDelegate {
-    let bluetoothManager = MCBluetoothManager.getInstance()
-    var delegate : BPMDataManagerDelegate?
+public class BPMDataManager: NSObject, MCBluetoothDelegate {
+    public let bluetoothManager = MCBluetoothManager.getInstance()
+    public var delegate : BPMDataManagerDelegate?
     
-    var arrBLEList = [CBPeripheral]()
-    var macAddress = [String]()
-    var nearbyPeripheralInfos : [CBPeripheral:Dictionary<String, AnyObject>] = [CBPeripheral:Dictionary<String, AnyObject>]()
+    public var arrBLEList = [CBPeripheral]()
+    public var macAddress = [String]()
+    public var nearbyPeripheralInfos : [CBPeripheral:Dictionary<String, AnyObject>] = [CBPeripheral:Dictionary<String, AnyObject>]()
     
-    var services : [CBService]?
-    var fff5Characteristic : CBCharacteristic?
-    var connectedPeripheral: CBPeripheral?
+    public var services : [CBService]?
+    public var fff5Characteristic : CBCharacteristic?
+    public var connectedPeripheral: CBPeripheral?
+    
     var recordCounter = 0
     var commandStr = "BT:9"
     var initialYear = 0
@@ -86,21 +87,23 @@ struct BGMCMD9Data {
     var BGMBytesString = ""
     
     /// Save the single instance
-    static private var instance : BPMDataManager {
-        return sharedInstance
-    }
+    //    open static var instance : BPMDataManager {
+    //        return sharedInstance
+    //    }
+    //
+    //    public let sharedInstance = BPMDataManager()
+    //    /**
+    //     Singleton pattern method
+    //
+    //     - returns: Bluetooth single instance
+    //     */
+    //    open static func getInstance() -> BPMDataManager {
+    //        return instance
+    //    }
     
-    private static let sharedInstance = BPMDataManager()
-    /**
-     Singleton pattern method
-     
-     - returns: Bluetooth single instance
-     */
-    static func getInstance() -> BPMDataManager {
-        return instance
-    }
+    public static let sharedInstance = BPMDataManager()
     
-    func didUpdateManager(){
+    open func didUpdateManager(){
         bluetoothManager.delegate = self
         self.perform(#selector(didUpdateState(_:)), with: nil, with: 1)
     }
@@ -120,18 +123,18 @@ struct BGMCMD9Data {
             bluetoothManager.startScanPeripheral()
         case .poweredOff:
             print(" MainController -->State : Powered Off")
-//            noBloothAlert("MedCheck", message: "Please turn on Bluetooth to detect near by BLE devices.")
+            //            noBloothAlert("MedCheck", message: "Please turn on Bluetooth to detect near by BLE devices.")
             fallthrough
         case .unauthorized:
             print("MainController --> State : Unauthorized")
-//            noBloothAlert("MedCheck", message: "Please authorise bluetooth permission from application settings.")
+            //            noBloothAlert("MedCheck", message: "Please authorise bluetooth permission from application settings.")
             fallthrough
         case .unknown:
             print("MainController --> State : Unknown")
             fallthrough
         case .unsupported:
             print("MainController --> State : Unsupported")
-//            noBloothAlert("MedCheck", message: "Your device is not supporting Bluetooth.")
+            //            noBloothAlert("MedCheck", message: "Your device is not supporting Bluetooth.")
             bluetoothManager.stopScanPeripheral()
             bluetoothManager.disconnectPeripheral()
         }
@@ -195,7 +198,7 @@ struct BGMCMD9Data {
      
      - connectPeripheral: Called when any peripherial connected
      */
-    func connectPeripheral(peripheral: CBPeripheral){
+    public func connectPeripheral(peripheral: CBPeripheral){
         commandStr = "BT:9"
         bluetoothManager.delegate = self
         connectedPeripheral = peripheral
@@ -293,7 +296,7 @@ struct BGMCMD9Data {
      */
     public func didReadValueForCharacteristic(_ characteristic: CBCharacteristic) {
         let string = String(data: characteristic.value!, encoding: String.Encoding.utf8)
-//        print("didReadValueForCharacteristic \(string)")
+        //        print("didReadValueForCharacteristic \(string)")
         if MCBluetoothManager.getInstance().connectedPeripheral?.name == "HL158HC BLE" || MCBluetoothManager.getInstance().connectedPeripheral?.name == "SFBPBLE" {
             if string == "R" {
                 self.newReadingStart = true
@@ -328,7 +331,7 @@ struct BGMCMD9Data {
         }
     }
     
-    func timeSyncOfBPM() {
+    public func timeSyncOfBPM() {
         let date = Date()
         let calendar = Calendar.current
         let year = calendar.component(.year, from: date)
@@ -359,7 +362,7 @@ struct BGMCMD9Data {
         MCBluetoothManager.getInstance().connectedPeripheral?.writeValue(data, for: self.fff5Characteristic!, type: CBCharacteristicWriteType.withoutResponse)
     }
     
-    func clearBPMDataCommand(){
+    public func clearBPMDataCommand(){
         if self.fff5Characteristic != nil {
             deleteRecordsOfBPM(characteristic: self.fff5Characteristic!)
         }
@@ -403,7 +406,7 @@ struct BGMCMD9Data {
     
     func readBPMData(data: NSData) {
         if data.length < 8{
-//            SVProgressHUD.dismiss()
+            //            SVProgressHUD.dismiss()
             return
         }
         var buffer = [UInt8](repeating: 0x00, count: data.length)
@@ -416,14 +419,14 @@ struct BGMCMD9Data {
             bpmDataArray.removeAll()
             recordCounter = 0
             delegate?.willStartDataReading!()
-//            dismissPopUp()
-//            lastBPMResultCount = appDelegate.bpmDataArray.count
-//            SVProgressHUD.show(withStatus: "Fetching...")
+            //            dismissPopUp()
+            //            lastBPMResultCount = appDelegate.bpmDataArray.count
+            //            SVProgressHUD.show(withStatus: "Fetching...")
             return
         }
         
         if hexaValue == "f5a5f5f6f5a5f7f8" {
-//            SVProgressHUD.dismiss()
+            //            SVProgressHUD.dismiss()
             if commandStr == "BT:9" {
                 if BPM9CMD != nil {
                     var userNumber = "1"
@@ -471,7 +474,7 @@ struct BGMCMD9Data {
                     }
                 }
             }
-//            SVProgressHUD.dismiss()
+            //            SVProgressHUD.dismiss()
             return
         }
         let binaryData = hexaValue.hexaToBinaryString.pad(with: "0", toLength: 64)
@@ -513,12 +516,12 @@ struct BGMCMD9Data {
                 else if BPM9CMD?.user == "20" {
                     currentIndex = Int((BPM9CMD?.person3Index)!)!
                 }
-//                if newReadingStart {
-//                    lastBPMResultCount = currentIndex != 0 ? currentIndex - 1 : 0
-//                }
-//                else{
-//                    lastBPMResultCount = currentIndex
-//                }
+                //                if newReadingStart {
+                //                    lastBPMResultCount = currentIndex != 0 ? currentIndex - 1 : 0
+                //                }
+                //                else{
+                //                    lastBPMResultCount = currentIndex
+                //                }
             }
             else{
                 //showAlert("Device user same")
@@ -550,7 +553,7 @@ struct BGMCMD9Data {
                 let sysPrefix = (BYTE04.substring(with: 0..<4).binaryToDecimal*100)
                 let diaPrefix = (BYTE04.substring(with: 4..<8).binaryToDecimal*100)
                 
-//                print("syPrefix:\(sysPrefix) diaPrefix:\(diaPrefix)")
+                //                print("syPrefix:\(sysPrefix) diaPrefix:\(diaPrefix)")
                 
                 var sysData = BYTE05.binToHex().ns.integerValue
                 var diaData = BYTE06.binToHex().ns.integerValue
@@ -558,12 +561,12 @@ struct BGMCMD9Data {
                 sysData =  sysPrefix+sysData
                 diaData =  diaPrefix+diaData
                 
-//                print("sysData==> \(sysData)   diaData==>\(diaData)")
+                //                print("sysData==> \(sysData)   diaData==>\(diaData)")
                 if sysData > 0{
                     let dataStr = String(format:"%02d-%02d-%04d %@",BYTE01,BYTE0_BIT1,year,timeStr)
-//                    let date1 = dataStr.getLocalTimeZoneDate()
+                    //                    let date1 = dataStr.getLocalTimeZoneDate()
                     
-//                    print(String(format:"%02d-%02d-%04d %@",BYTE01,BYTE0_BIT1,year,timeStr))
+                    //                    print(String(format:"%02d-%02d-%04d %@",BYTE01,BYTE0_BIT1,year,timeStr))
                     
                     let data = ["device":"Blood Pressure", "data" : ["Systolic":  String(format: "%d",sysData), "Diastolic" : String(format: "%d",diaData), "Date" : dataStr, "Indicator" : BYTE2_BIT2, "Pulse" : "\(buffer[7])"]]  as [String : Any]
                     
@@ -633,7 +636,7 @@ struct BGMCMD9Data {
             BGM9CMD = data
             recordCounter = 0
             BGMBT9CommandRead()
-           
+            
             let userData = ["user": "01", "startingRecordIndex": "\(start)", "endingRecordIndex" : "\(end)", "bgmType":"\(type)"]
             delegate?.connectedUserData!(userData)
         }
@@ -679,8 +682,8 @@ struct BGMCMD9Data {
                 let BYTE05 = binaryStr.substring(with: 10..<12) .hexaToDecimal
                 print("HIGH BYTE05: \(BYTE05)")
                 
-//                let dataStr = String(format:"%@ %@",dateStr,timeStr)
-//                let date1 = dataStr.getLocalTimeZoneDate()
+                //                let dataStr = String(format:"%@ %@",dateStr,timeStr)
+                //                let date1 = dataStr.getLocalTimeZoneDate()
                 
                 let data = ["device":"Glucose", "data" : ["high_blood":  String(format: "%d",BYTE05), "Date" : dateStr+" "+timeStr, "Indicator" : BYTE03_BIT1]]  as [String : Any]
                 
@@ -704,3 +707,4 @@ struct BGMCMD9Data {
         print("readOtherData str ==> \(str)")
     }
 }
+
